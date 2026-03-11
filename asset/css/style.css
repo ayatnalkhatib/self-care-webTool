@@ -1,0 +1,83 @@
+
+html {
+    box-sizing:border-box;
+    scroll-behavior: smooth;
+
+}
+
+*, *:before *:after{
+
+    box-sizing:inherit;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden{
+  display: none;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #98A4E9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+/* Login Page */ 
+
+
+.login-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 25px  #F7C8E0;
+  width: 700px;
+  height:500px;
+  text-align: center;
+}
+
+.login-card h2 {
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login-card button {
+  width: 48%;
+  padding: 12px;
+  margin: 10px 1%;
+  border: none;
+  border-radius: 8px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-card button:hover {
+  background-color: #45a049;
+}
+
+.login-card #loginMessage {
+  margin-top: 10px;
+  color: red;
+  font-size: 14px;
+}

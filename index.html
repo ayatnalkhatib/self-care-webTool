@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Self-care Web Tool</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Self-care Web tool">
+  <meta name="author" content="Ayat Alkhatib">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="asset/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+  <main>
+  <!--Login Section-->
+    <section id="loginSection" class="web-tool">
+      <div class="login-card">
+        <h2>Login / Sign Up</h2>
+        <input type="email" id="usernameInput" placeholder="Email" required>
+        <input type="password" id="passwordInput" placeholder="Password" required>
+        
+        <div class="buttons">
+          <button onclick="login()">Login</button>
+          <button onclick="signup()">Sign Up</button>
+        </div>
+        <p id="loginMessage"></p>
+      </div>
+    </section>
+
+  <!--New User Section-->
+    <section id="newUser" class="web-tool">
+      <section id="userNamegen">
+        <p1>Welcome to Self-Care Tracker</p1>
+        <p3>Let's Began:</p3>
+        <p4>Nickname:</p4><input type="text" id="nickname" placeholder="Nickname" required>
+        <p3>Choose Your Avatar:</p3>
+        <div class="characters">
+          <div class="female"></div>
+          <div class="male"></div>
+        </div>
+      </section>
+      <section id="avatarcust">
+        <h2>Customize Avatar</h2>
+        <div class="hair">Hair:</div>
+        <div class="skin">Skin-Color:</div>
+        <div class="eye-color">Eye Color:</div>
+        <div class="top">Top: </div>
+      </section>
+    </section>
+  
+  <!--Main Page-->
+    <section id="mainPage" class="web-tool">
+      <div class="message"></div>
+      <div><a href="#wellnessTracker"></a></div>
+      <div><a href="#journal"></a></div>
+      <div><a href="#report"></a></div>
+      <div><a href="#calander"></a></div>
+      <div></div>
+    </section>
+
+  <!--Wellness Tracker-->
+    <section id="wellnessTracker" class="web-tool">
+      <div class="wellness">
+        <h5>Water Intake: </h5><input type="text" id="waterintake">
+        <h5>Exercies:</h5><input type="text" id="exercies">
+        <h5>Sleep:</h5><input type="text" id="sleep">
+        <h5>Calories Intake:</h5><input type="text" id="cal-intake">
+      </div>
+      <div class="mind">
+        <h5>30 - Minute Reading:</h5>
+          <input type="radio" id="yes" name="agreement" value="yes" required>
+          <label for="yes">Yes</label><br>
+          <input type="radio" id="no" name="agreement" value="no">
+          <label for="no">No</label>
+
+        <h5>Hobby:</h5><input type="text" id="hobby">
+        <h5>Mood Tracker</h5>
+        <ul>
+          <li>Happy</li>
+          <li>Okay</li>
+          <li>Sad</li>
+        </ul>
+      </div>
+      <div class="self-care"></div>
+    </section>
+
+  <!--Journal-->
+    <section id="journal" class="web-tool"></section>
+
+  <!--Report-->
+    <section id="report" class="web-tool"></section>
+
+  <!--Calander-->
+    <section id="calander" class="web-tool"></section>
+  </main>
+ <script type="module">
+  // Import the functions you need from the SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCMIZj6khOSgESv2W1VS2Lz6tzznFJnABw",
+    authDomain: "self-care-web-tool.firebaseapp.com",
+    projectId: "self-care-web-tool",
+    storageBucket: "self-care-web-tool.firebasestorage.app",
+    messagingSenderId: "1032390616082",
+    appId: "1:1032390616082:web:7372a0b145d9508a9664cb"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Make auth globally available
+  window.auth = auth;
+</script>
+<script type="module" src="asset/js/script.js"></script>
+</body>
