@@ -46,21 +46,39 @@
         <div class="skin">Skin-Color:</div>
         <div class="eye-color">Eye Color:</div>
         <div class="top">Top: </div>
+        
       </section>
+
+      <div class="topBar">
+        <button onclick="logout()">Logout</button>
+      </div>
     </section>
   
   <!--Main Page-->
     <section id="mainPage" class="web-tool">
       <div class="message"></div>
-      <div><a href="#wellnessTracker"></a></div>
-      <div><a href="#journal"></a></div>
-      <div><a href="#report"></a></div>
-      <div><a href="#calander"></a></div>
+      <div>
+        <button data-target="wellnessTracker">Wellness Tracker</button>
+      </div>
+      <div>
+        <button data-target="journal">Journal</button>
+      </div>
+      <div>
+        <button data-target="report">Report</button>
+      </div>
+      <div>
+        <button data-target="calander">Calendar</button>
+      </div>
       <div></div>
+
+      <div class="topBar">
+        <button onclick="logout()">Logout</button>
+      </div>
     </section>
 
   <!--Wellness Tracker-->
     <section id="wellnessTracker" class="web-tool">
+      <button class="backToMain">Back</button>
       <div class="wellness">
         <h5>Water Intake: </h5><input type="text" id="waterintake">
         <h5>Exercies:</h5><input type="text" id="exercies">
