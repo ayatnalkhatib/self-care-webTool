@@ -1,15 +1,11 @@
-
 html {
     box-sizing:border-box;
     scroll-behavior: smooth;
-
 }
 
-*, *:before *:after{
-
+*, *:before, *:after {
     box-sizing:inherit;
 }
-
 
 * {
     margin: 0;
@@ -21,19 +17,36 @@ html {
   display: none;
 }
 
+/* ================= BODY (UNCHANGED DESIGN) ================= */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #98A4E9;
+
+  min-height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
+/* ================= BUTTONS ================= */
 
-/* Login Page */ 
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #5a67d8;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
+button:hover {
+  background-color: #434190;
+}
+
+/* ================= LOGIN PAGE ================= */
 
 .login-card {
   background-color: #ffffff;
@@ -56,7 +69,6 @@ body {
   margin: 10px 0;
   border-radius: 8px;
   border: 1px solid #ccc;
-  box-sizing: border-box;
 }
 
 .login-card button {
@@ -80,4 +92,201 @@ body {
   margin-top: 10px;
   color: red;
   font-size: 14px;
+}
+
+/* ================= NEW USER ================= */
+
+#newUser #userNamegen,
+#newUser #avatarcust {
+  width: 380px;
+  padding: 35px;
+
+  background: rgba(255,255,255,0.95);
+  border-radius: 22px;
+
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* character selection */
+.characters {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 15px;
+}
+
+.characters div {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ddd;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 2px solid transparent;
+}
+
+.characters div:hover {
+  transform: scale(1.08);
+  border: 2px solid #5a67d8;
+}
+
+#avatarcust img {
+  margin-top: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#avatarcust img:hover {
+  transform: scale(1.05);
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftPanel img {
+  width: 200px;
+  border-radius: 20px;
+  background: white;
+  padding: 12px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+}
+
+.leftPanel img:hover {
+  transform: scale(1.05);
+}
+
+.rightPanel {
+  width: 420px;
+
+  background: rgba(255,255,255,0.95);
+  padding: 30px;
+
+  border-radius: 22px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.rightPanel ul {
+  list-style: none;
+  padding: 0;
+}
+
+.rightPanel li {
+  margin-bottom: 12px;
+}
+
+.rightPanel a {
+  display: block;
+  padding: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+  transition: 0.2s;
+}
+
+.rightPanel a:hover {
+  background: #eef1ff;
+  color: #5a67d8;
+  transform: translateX(5px);
+}
+
+/* ================= WELLNESS (FIXED PROPERLY) ================= */
+#wellnessTracker {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 40px;
+
+  width: 100%;
+  padding: 40px;
+}
+
+/* FORCE SIDE BY SIDE */
+.wellness,
+.mind {
+  width: 420px;
+  flex-shrink: 0;   /* THIS is what stops stacking */
+}
+
+/* BOTH BOXES */
+.wellness,
+.mind {
+  width: 420px;
+
+  background: rgba(255,255,255,0.95);
+  border-radius: 22px;
+
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* INPUTS */
+.wellness input,
+.mind input {
+  width: 100%;
+  padding: 12px;
+
+  margin: 10px 0 15px;
+
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* MOOD LIST */
+.mind ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mind li {
+  padding: 12px;
+  margin-bottom: 10px;
+
+  border-radius: 12px;
+  background: #f0f4ff;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mind li:hover {
+  background: #dbe4ff;
+  transform: scale(1.03);
+}
+
+/* BUTTON GROUP */
+.wellness-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
 }

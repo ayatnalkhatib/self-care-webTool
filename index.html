@@ -31,23 +31,17 @@
   <!--New User Section-->
     <section id="newUser" class="web-tool">
       <section id="userNamegen">
-        <p1>Welcome to Self-Care Tracker</p1>
-        <p3>Let's Began:</p3>
-        <p4>Nickname:</p4><input type="text" id="nickname" placeholder="Nickname" required>
-        <p3>Choose Your Avatar:</p3>
+        <p>Welcome to Self-Care Tracker</p>
+        <p>Let's Began:</p>
+        <p>Nickname:</p><input type="text" id="nickname" placeholder="Nickname" required>
+        <p>Choose Your Avatar:</p>
         <div class="characters">
           <div class="female"></div>
           <div class="male"></div>
         </div>
       </section>
-      <section id="avatarcust">
-        <h2>Customize Avatar</h2>
-        <div class="hair">Hair:</div>
-        <div class="skin">Skin-Color:</div>
-        <div class="eye-color">Eye Color:</div>
-        <div class="top">Top: </div>
-        
-      </section>
+      <!--<section id="avatarcust">
+      </section>-->
 
       <div class="topBar">
         <button onclick="logout()">Logout</button>
@@ -57,52 +51,87 @@
   <!--Main Page-->
     <section id="mainPage" class="web-tool">
       <div class="message"></div>
-      <div>
-        <button data-target="wellnessTracker">Wellness Tracker</button>
-      </div>
-      <div>
-        <button data-target="journal">Journal</button>
-      </div>
-      <div>
-        <button data-target="report">Report</button>
-      </div>
-      <div>
-        <button data-target="calander">Calendar</button>
-      </div>
-      <div></div>
+      <section class="dashboard">
 
-      <div class="topBar">
-        <button onclick="logout()">Logout</button>
+        <!-- LEFT SIDE -->
+        <div class="leftPanel">
+          <img id="avatar" src="asset/img/avatarwomen.png" />
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="rightPanel">
+
+        <ul>
+          <li><a href="#" onclick="showSection('wellnessTracker'); return false;">Wellness Tracker</a></li>
+          <li><a href="#" onclick="showSection('journal'); return false;">Journal</a></li>
+          <li><a href="#" onclick="showSection('report'); return false;">Report</a></li>
+          <li><a href="#" onclick="showSection('calander'); return false;">Calander</a></li>
+        </ul>
+
+          <div class="topBar">
+            <button onclick="logout()">Logout</button>
+          </div>
+
+        </div>
+
+      </section>
+    </div>
       </div>
+      
+
+   
     </section>
 
   <!--Wellness Tracker-->
     <section id="wellnessTracker" class="web-tool">
-      <button class="backToMain">Back</button>
-      <div class="wellness">
-        <h5>Water Intake: </h5><input type="text" id="waterintake">
-        <h5>Exercies:</h5><input type="text" id="exercies">
-        <h5>Sleep:</h5><input type="text" id="sleep">
-        <h5>Calories Intake:</h5><input type="text" id="cal-intake">
-      </div>
-      <div class="mind">
-        <h5>30 - Minute Reading:</h5>
-          <input type="radio" id="yes" name="agreement" value="yes" required>
-          <label for="yes">Yes</label><br>
-          <input type="radio" id="no" name="agreement" value="no">
-          <label for="no">No</label>
 
-        <h5>Hobby:</h5><input type="text" id="hobby">
-        <h5>Mood Tracker</h5>
-        <ul>
-          <li>Happy</li>
-          <li>Okay</li>
-          <li>Sad</li>
-        </ul>
-      </div>
-      <div class="self-care"></div>
-    </section>
+  <div class="wellness">
+    <h3>Wellness Tracker</h3>
 
+    <label>Water Intake</label>
+    <input type="text" id="waterintake">
+
+    <label>Exercise</label>
+    <input type="text" id="exercise">
+
+    <label>Sleep</label>
+    <input type="text" id="sleep">
+
+    <label>Calories Intake</label>
+    <input type="text" id="cal-intake">
+  </div>
+
+  <div class="mind">
+    <h3>Mind Tracker</h3>
+
+    <label>30-Minute Reading</label>
+    <div class="radio-group">
+      <input type="radio" id="yes" name="reading" value="yes">
+      <label for="yes">Yes</label>
+
+      <input type="radio" id="no" name="reading" value="no">
+      <label for="no">No</label>
+    </div>
+
+    <label>Hobby</label>
+    <input type="text" id="hobby">
+
+    <h5>Mood Tracker</h5>
+    <ul class="mood-list">
+      <li>😊 Happy</li>
+      <li>😐 Okay</li>
+      <li>😢 Sad</li>
+    </ul>
+  </div>
+
+</section>
+
+<div class="wellness-buttons">
+  <button class="backToMain">Back</button>
+  <button class="savedata">Insert</button>
+</div>
+
+<div class="self-care"></div>
   <!--Journal-->
     <section id="journal" class="web-tool"></section>
 
