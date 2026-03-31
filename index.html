@@ -89,16 +89,16 @@
     <h3>Wellness Tracker</h3>
 
     <label>Water Intake</label>
-    <input type="text" id="waterintake">
+    <input type="text" id="waterintake" placeholder="Please Enter a Number">
 
     <label>Exercise</label>
-    <input type="text" id="exercise">
+    <input type="text" id="exercise"  placeholder="Please Enter a Number">
 
     <label>Sleep</label>
-    <input type="text" id="sleep">
+    <input type="text" id="sleep"  placeholder="Please Enter a Number">
 
     <label>Calories Intake</label>
-    <input type="text" id="cal-intake">
+    <input type="text" id="cal-intake" placeholder="Please Enter a Number">
   </div>
 
   <div class="mind">
@@ -124,16 +124,35 @@
     </ul>
   </div>
 
-</section>
-
-<div class="wellness-buttons">
+  <div class="wellness-buttons">
   <button class="backToMain">Back</button>
   <button class="savedata">Insert</button>
 </div>
 
+</section>
+
+
+
 <div class="self-care"></div>
   <!--Journal-->
-    <section id="journal" class="web-tool"></section>
+    <section id="journal" class="web-tool">
+       <div class="journal-box">
+
+    <h2>My Journal</h2>
+
+    <textarea id="journalInput" placeholder="Write your thoughts..."></textarea>
+
+    <button onclick="saveJournal()">Save</button>
+
+    <div id="journalEntries"></div>
+
+  </div>
+
+   <div class="wellness-buttons">
+  <button class="backToMain">Back</button>
+</div>
+
+    </section>
 
   <!--Report-->
     <section id="report" class="web-tool"></section>
