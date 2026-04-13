@@ -7,104 +7,120 @@
   <meta name="author" content="Ayat Alkhatib">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="asset/css/style.css" rel="stylesheet">
-
-
 </head>
 
 <body>
-  <main>
-  <!--Login Section-->
-    <section id="loginSection" class="web-tool">
-      <div class="login-card">
-        <h2>Login / Sign Up</h2>
-        <input type="email" id="usernameInput" placeholder="Email" required>
-        <input type="password" id="passwordInput" placeholder="Password" required>
-        
-        <div class="buttons">
-          <button onclick="login()">Login</button>
-          <button onclick="signup()">Sign Up</button>
-        </div>
-        <p id="loginMessage"></p>
-      </div>
-    </section>
+<main>
 
-  <!--New User Section-->
-    <section id="newUser" class="web-tool">
-      <section id="userNamegen">
-        <p>Welcome to Self-Care Tracker</p>
-        <p>Let's Began:</p>
-        <p>Nickname:</p><input type="text" id="nickname" placeholder="Nickname" required>
-        <p>Choose Your Avatar:</p>
-        <div class="characters">
-          <div class="female"></div>
-          <div class="male"></div>
-        </div>
-      </section>
-      <!--<section id="avatarcust">
-      </section>-->
+<!-- login section -->
+<section id="loginSection" class="web-tool">
+  <div class="login-card">
+    <h2>Login / Sign Up</h2>
+
+    <input type="email" id="usernameInput" placeholder="Email" required>
+    <input type="password" id="passwordInput" placeholder="Password" required>
+
+    <div class="buttons">
+      <button onclick="login()">Login</button>
+      <button onclick="signup()">Sign Up</button>
+    </div>
+
+    <p id="loginMessage"></p>
+  </div>
+</section>
+
+<!-- new user section -->
+<section id="newUser" class="web-tool">
+
+  <section id="userNamegen">
+
+    <p>Welcome to Self-Care Tracker</p>
+    <p>What’s your name?</p>
+
+    <input type="text" id="nickname" placeholder="Enter your name">
+
+    <p>Choose Your Animal:</p>
+
+    <div class="animal-grid">
+
+      <div class="animal" data-animal="bear">🐻</div>
+      <div class="animal" data-animal="cat">🐱</div>
+      <div class="animal" data-animal="dog">🐶</div>
+      <div class="animal" data-animal="rabbit">🐰</div>
+      <div class="animal" data-animal="fox">🦊</div>
+      <div class="animal" data-animal="panda">🐼</div>
+      <div class="animal" data-animal="frog">🐸</div>
+      <div class="animal" data-animal="koala">🐨</div>
+      <div class="animal" data-animal="lion">🦁</div>
+      <div class="animal" data-animal="pig">🐷</div>
+
+    </div>
+
+    <button onclick="createUser()">Continue</button>
+
+  </section>
+
+  <div class="topBar">
+    <button onclick="logout()">Logout</button>
+  </div>
+
+</section>
+
+<!-- main page -->
+<section id="mainPage" class="web-tool">
+
+  <div class="message"></div>
+
+  <section class="dashboard">
+
+    <!-- LEFT -->
+    <div class="leftPanel">
+      <div id="bearDisplay" class="animalDisplay"></div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="rightPanel">
+
+      <ul>
+        <li><a href="#" onclick="showSection('wellnessTracker'); return false;">Wellness Tracker</a></li>
+        <li><a href="#" onclick="showSection('journal'); return false;">Journal</a></li>
+        <li><a href="#" onclick="showSection('report'); return false;">Report</a></li>
+        <li><a href="#" onclick="showSection('calander'); return false;">Calendar</a></li>
+      </ul>
 
       <div class="topBar">
         <button onclick="logout()">Logout</button>
       </div>
-    </section>
-  
-  <!--Main Page-->
-    <section id="mainPage" class="web-tool">
-      <div class="message"></div>
-      <section class="dashboard">
 
-        <!-- LEFT SIDE -->
-        <div class="leftPanel">
-          <img id="avatar" src="asset/img/avatarwomen.png" />
-        </div>
-
-        <!-- RIGHT SIDE -->
-        <div class="rightPanel">
-
-        <ul>
-          <li><a href="#" onclick="showSection('wellnessTracker'); return false;">Wellness Tracker</a></li>
-          <li><a href="#" onclick="showSection('journal'); return false;">Journal</a></li>
-          <li><a href="#" onclick="showSection('report'); return false;">Report</a></li>
-          <li><a href="#" onclick="showSection('calander'); return false;">Calander</a></li>
-        </ul>
-
-          <div class="topBar">
-            <button onclick="logout()">Logout</button>
-          </div>
-
-        </div>
-
-      </section>
     </div>
-      </div>
-      
 
-   
-    </section>
+  </section>
+</section>
 
-  <!--Wellness Tracker-->
-    <section id="wellnessTracker" class="web-tool">
+<!--wellness page-->
+<section id="wellnessTracker" class="web-tool">
 
   <div class="wellness">
     <h3>Wellness Tracker</h3>
 
     <label>Water Intake</label>
-    <input type="text" id="waterintake" placeholder="Please Enter a Number">
+    <input type="text" id="waterintake" placeholder="Enter number">
 
     <label>Exercise</label>
-    <input type="text" id="exercise"  placeholder="Please Enter a Number">
+    <input type="text" id="exercise" placeholder="Enter number">
 
     <label>Sleep</label>
-    <input type="text" id="sleep"  placeholder="Please Enter a Number">
+    <input type="text" id="sleep" placeholder="Enter number">
 
     <label>Calories Intake</label>
-    <input type="text" id="cal-intake" placeholder="Please Enter a Number">
+    <input type="text" id="cal-intake" placeholder="Enter number">
   </div>
 
   <div class="mind">
     <h3>Mind Tracker</h3>
 
     <label>30-Minute Reading</label>
+
     <div class="radio-group">
       <input type="radio" id="yes" name="reading" value="yes">
       <label for="yes">Yes</label>
@@ -122,22 +138,20 @@
       <li>😐 Okay</li>
       <li>😢 Sad</li>
     </ul>
+
   </div>
 
   <div class="wellness-buttons">
-  <button class="backToMain">Back</button>
-  <button class="savedata">Insert</button>
-</div>
+    <button class="backToMain">Back</button>
+    <button class="savedata">Insert</button>
+  </div>
 
 </section>
 
+<!-- jorunal -->
+<section id="journal" class="web-tool">
 
-
-<div class="self-care"></div>
-  <!--Journal-->
-    <section id="journal" class="web-tool">
-       <div class="journal-box">
-
+  <div class="journal-box">
     <h2>My Journal</h2>
 
     <textarea id="journalInput" placeholder="Write your thoughts..."></textarea>
@@ -145,27 +159,27 @@
     <button onclick="saveJournal()">Save</button>
 
     <div id="journalEntries"></div>
-
   </div>
 
-   <div class="wellness-buttons">
-  <button class="backToMain">Back</button>
-</div>
+  <div class="wellness-buttons">
+    <button class="backToMain">Back</button>
+  </div>
 
-    </section>
+</section>
 
-  <!--Report-->
-    <section id="report" class="web-tool"></section>
+<!-- report -->
+<section id="report" class="web-tool"></section>
 
-  <!--Calander-->
-    <section id="calander" class="web-tool"></section>
-  </main>
- <script type="module">
-  // Import the functions you need from the SDKs
+<!-- calander -->
+<section id="calander" class="web-tool"></section>
+
+</main>
+
+<!-- ================= FIREBASE ================= -->
+<script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
   import { getAuth } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
-  // Your Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyCMIZj6khOSgESv2W1VS2Lz6tzznFJnABw",
     authDomain: "self-care-web-tool.firebaseapp.com",
@@ -175,12 +189,13 @@
     appId: "1:1032390616082:web:7372a0b145d9508a9664cb"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // Make auth globally available
   window.auth = auth;
 </script>
+
 <script type="module" src="asset/js/script.js"></script>
+
 </body>
+</html>

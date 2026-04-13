@@ -1,52 +1,64 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+
 
 const emailInput = document.getElementById("usernameInput");
 const passwordInput = document.getElementById("passwordInput");
 const loginMessage = document.getElementById("loginMessage");
 
-function showLogin() {
-  document.getElementById("loginSection").style.display = "block";
-}
+// sections 
 
-// Show/Hide Sections
-const sections = ["loginSection" , "newUser" , "mainPage" , "wellnessTracker" , "journal" , "report" , "calander" ];
+const sections = [
+  "loginSection",
+  "newUser",
+  "mainPage",
+  "wellnessTracker",
+  "journal",
+  "report",
+  "calander"
+];
 
-window.showSection = function(sectionId){
+window.showSection = function (sectionId) {
   sections.forEach(id => {
     const el = document.getElementById(id);
-    if (el) { // FIX: prevents crash if missing
+    if (el) {
       el.style.display = (id === sectionId) ? "block" : "none";
     }
   });
-}
+};
 
-// update auth (LOGIN - FIXED ONLY ONE VERSION)
+// authencticatoion 
 window.login = async function () {
-  try{
+  try {
     const userCredential = await signInWithEmailAndPassword(
-      window.auth, 
-      emailInput.value, 
+      window.auth,
+      emailInput.value,
       passwordInput.value
-    ); 
-    loginMessage.textContent = `Welcome back, ${userCredential.user.email}`;
+    );
+
+    loginMessage.textContent = `Welcome back ${userCredential.user.email}`;
 
     showSection("mainPage");
-    
-  } catch (error){
+    showWelcome();
+
+  } catch (error) {
     loginMessage.textContent = error.message;
   }
 };
 
-// SIGNUP (FIXED ONLY ONE VERSION)
-window.signup = async function() {
+window.signup = async function () {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       window.auth,
       emailInput.value,
       passwordInput.value
     );
-    loginMessage.textContent = `Sign up successful Welcome ${userCredential.user.email}`;
+
+    loginMessage.textContent = `Account created: ${userCredential.user.email}`;
 
     showSection("newUser");
 
@@ -55,70 +67,121 @@ window.signup = async function() {
   }
 };
 
-window.logout = async function() {
+window.logout = async function () {
   try {
     await signOut(window.auth);
-    loginMessage.textContent = "Logged out successfully.";
+
+    loginMessage.textContent = "Logged out";
+
     showSection("loginSection");
+
   } catch (error) {
     loginMessage.textContent = error.message;
   }
 };
 
-// refresh with firebase (MERGED FIX - ONLY ONE LISTENER)
-onAuthStateChanged(window.auth, (user => {
-  if(user){
-    const newUserCompleted = localStorage.getItem("newUserCompleted") === "true"; 
-    
-    if(newUserCompleted) showSection("mainPage"); 
-    else showSection("newUser"); 
+// setup
 
-    if (loginMessage) {
-      loginMessage.textContent = `Logged in as ${user.email}`; 
-    }
+window.createUser = function () {
+  const name = document.getElementById("nickname").value;
 
-    if (document.querySelector(".message")) {
-      document.querySelector(".message").textContent =
-        `Welcome, ${user.email}`;
-    }
+  if (!name) return;
 
-  } else{
-    showSection("loginSection");
+  localStorage.setItem("username", name);
+  localStorage.setItem("newUserCompleted", "true");
+
+  showSection("mainPage");
+  showWelcome();
+};
+
+//message 
+
+function showWelcome() {
+  const name = localStorage.getItem("username");
+  const message = document.querySelector(".message");
+
+  if (message && name) {
+    message.textContent = `Welcome, ${name}! 👋`;
   }
-}));
+}
 
 // buttons
-const mainPageButtons = document.querySelectorAll("#mainPage button"); 
 
-mainPageButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    const targetId = button.getAttribute("data-target"); 
-    showSection(targetId);
+document.querySelectorAll(".backToMain").forEach(btn => {
+  btn.addEventListener("click", () => {
+    showSection("mainPage");
+    showWelcome();
   });
 });
 
-// back button 
-const backButtons = document.querySelectorAll(".backToMain"); 
 
-backButtons.forEach(button =>{
-  button.addEventListener("click", () => {
-    showSection("mainPage");
-  });
+
+onAuthStateChanged(window.auth, (user) => {
+  if (user) {
+    const completed =
+      localStorage.getItem("newUserCompleted") === "true";
+
+    if (completed) {
+      showSection("mainPage");
+    } else {
+      showSection("newUser");
+    }
+
+    showWelcome();
+
+  } else {
+    showSection("loginSection");
+  }
 });
 
-// finish setup 
-const finishBtn = document.getElementById("finishSetup");
+// avatar 
 
-if (finishBtn) {
-  finishBtn.addEventListener("click", () => {
-    localStorage.setItem("newUserCompleted", "true");
-    showSection("mainPage");
+let selectedAnimal = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.querySelectorAll(".animal").forEach(el => {
+    el.addEventListener("click", () => {
+
+      document.querySelectorAll(".animal")
+        .forEach(a => a.classList.remove("selected"));
+
+      el.classList.add("selected");
+
+      selectedAnimal = el.dataset.animal;
+      localStorage.setItem("animal", selectedAnimal);
+
+      renderAnimal();
+    });
   });
+
+  renderAnimal(); 
+});
+
+function renderAnimal() {
+  const animal = localStorage.getItem("animal");
+  const display = document.getElementById("bearDisplay");
+
+  if (!display) return;
+
+  const emojiMap = {
+    bear: "🐻",
+    cat: "🐱",
+    dog: "🐶",
+    rabbit: "🐰",
+    fox: "🦊",
+    panda: "🐼",
+    frog: "🐸",
+    koala: "🐨",
+    lion: "🦁",
+    pig: "🐷"
+  };
+
+  display.textContent = animal ? emojiMap[animal] || "🐻" : "";
 }
 
 
-// avatar
-function selectAvatar() {
-  localStorage.setItem("selectedAvatar", "avatar");
-  window.location.href = "main.html";
-}
+window.onload = function () {
+  showWelcome();
+  renderAnimal();
+};
