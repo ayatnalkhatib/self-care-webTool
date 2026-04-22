@@ -97,47 +97,51 @@
   </section>
 </section>
 
-<!--wellness page-->
-<section id="wellnessTracker" class="web-tool">
+<!--wellness page--><section id="wellnessTracker" class="web-tool">
 
-  <div class="wellness">
-    <h3>Wellness Tracker</h3>
+  <div class="wellness-wrapper">
 
-    <label>Water Intake</label>
-    <input type="text" id="waterintake" placeholder="Enter number">
+    <div class="wellness">
+      <h3>Wellness Tracker</h3>
 
-    <label>Exercise</label>
-    <input type="text" id="exercise" placeholder="Enter number">
+      <label>Water Intake</label>
+      <input type="text" id="waterintake" placeholder="Enter number">
 
-    <label>Sleep</label>
-    <input type="text" id="sleep" placeholder="Enter number">
+      <label>Exercise</label>
+      <input type="text" id="exercise" placeholder="Enter number">
 
-    <label>Calories Intake</label>
-    <input type="text" id="cal-intake" placeholder="Enter number">
-  </div>
+      <label>Sleep</label>
+      <input type="text" id="sleep" placeholder="Enter number">
 
-  <div class="mind">
-    <h3>Mind Tracker</h3>
-
-    <label>30-Minute Reading</label>
-
-    <div class="radio-group">
-      <input type="radio" id="yes" name="reading" value="yes">
-      <label for="yes">Yes</label>
-
-      <input type="radio" id="no" name="reading" value="no">
-      <label for="no">No</label>
+      <label>Calories Intake</label>
+      <input type="text" id="cal-intake" placeholder="Enter number">
     </div>
 
-    <label>Hobby</label>
-    <input type="text" id="hobby">
+    <div class="mind">
+      <h3>Mind Tracker</h3>
 
-    <h5>Mood Tracker</h5>
-    <ul class="mood-list">
-      <li>😊 Happy</li>
-      <li>😐 Okay</li>
-      <li>😢 Sad</li>
-    </ul>
+      <label>30-Minute Reading</label>
+
+      <div class="radio-group">
+        <input type="radio" id="yes" name="reading" value="yes">
+        <label for="yes">Yes</label>
+
+        <input type="radio" id="no" name="reading" value="no">
+        <label for="no">No</label>
+      </div>
+
+      <label>Hobby</label>
+      <input type="text" id="hobby">
+
+      <h5>Mood Tracker</h5>
+
+      <ul class="mood-list">
+        <li class="mood" data-mood="happy">😊 Happy</li>
+        <li class="mood" data-mood="okay">😐 Okay</li>
+        <li class="mood" data-mood="sad">😢 Sad</li>
+      </ul>
+
+    </div>
 
   </div>
 
@@ -151,21 +155,71 @@
 <!-- jorunal -->
 <section id="journal" class="web-tool">
 
-  <div class="journal-box">
-    <h2>My Journal</h2>
+  <header class="journal-header">
+    <h1 class="title">My Personal Journal</h1>
 
-    <textarea id="journalInput" placeholder="Write your thoughts..."></textarea>
+    <span class="date-icon" onclick="openCalendar()">📅</span>
+  </header>
 
-    <button onclick="saveJournal()">Save</button>
+  <section class="section journal-section">
+    <div class="container">
+      <div class="container-row container-row-journal">
+        <div class="container-item container-item-journal">
+          
+          <form id="entryForm">
+            <label for="entry-title" class="journal-label">Entry Title</label>
+            <input
+              type="text"
+              id="entry-title"
+              class="entry-text-title"
+              placeholder="Name of entry ✏️"
+            />
 
-    <div id="journalEntries"></div>
-  </div>
+            <label for="entry" class="journal-label">Today's Entry</label>
+            <textarea
+              id="entry"
+              class="entry-text-box"
+              placeholder="What's on your mind today? 💭"
+            ></textarea>
 
+            <button class="btn-main entry-submit-btn" type="submit">
+              Submit
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journal Results -->
+  <section class="section sectionEntryResults" id="entryResultsSection">
+    <div class="container">
+      <div class="container-row entryResultRow" id="entryResults"></div>
+    </div>
+  </section>
+
+  <!-- Back Button -->
   <div class="wellness-buttons">
     <button class="backToMain">Back</button>
   </div>
 
 </section>
+
+<div id="calendarModal" class="calendar-modal hidden">
+
+  <div class="calendar-box">
+
+    <div class="calendar-header">
+      <h3>Select Date</h3>
+      <button onclick="closeCalendar()">✖</button>
+    </div>
+
+    <div id="calendarGrid" class="calendar-grid"></div>
+
+  </div>
+
+</div>
 
 <!-- report -->
 <section id="report" class="web-tool"></section>

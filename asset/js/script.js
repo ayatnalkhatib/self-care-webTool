@@ -6,11 +6,14 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
 
+let selectedDate = new Date().toISOString().split("T")[0];
+let journalData = JSON.parse(localStorage.getItem("journalData")) || {};
+
 const emailInput = document.getElementById("usernameInput");
 const passwordInput = document.getElementById("passwordInput");
 const loginMessage = document.getElementById("loginMessage");
 
-// sections 
+//sections 
 
 const sections = [
   "loginSection",
@@ -25,13 +28,17 @@ const sections = [
 window.showSection = function (sectionId) {
   sections.forEach(id => {
     const el = document.getElementById(id);
-    if (el) {
-      el.style.display = (id === sectionId) ? "block" : "none";
-    }
+    if (el) el.style.display = (id === sectionId) ? "" : "none";
   });
+
+  // refresh journal when opened
+  if (sectionId === "journal") {
+    renderEntries(selectedDate);
+  }
 };
 
-// authencticatoion 
+//authentication
+
 window.login = async function () {
   try {
     const userCredential = await signInWithEmailAndPassword(
@@ -41,7 +48,6 @@ window.login = async function () {
     );
 
     loginMessage.textContent = `Welcome back ${userCredential.user.email}`;
-
     showSection("mainPage");
     showWelcome();
 
@@ -59,7 +65,6 @@ window.signup = async function () {
     );
 
     loginMessage.textContent = `Account created: ${userCredential.user.email}`;
-
     showSection("newUser");
 
   } catch (error) {
@@ -68,23 +73,15 @@ window.signup = async function () {
 };
 
 window.logout = async function () {
-  try {
-    await signOut(window.auth);
-
-    loginMessage.textContent = "Logged out";
-
-    showSection("loginSection");
-
-  } catch (error) {
-    loginMessage.textContent = error.message;
-  }
+  await signOut(window.auth);
+  loginMessage.textContent = "Logged out";
+  showSection("loginSection");
 };
 
-// setup
+//user 
 
 window.createUser = function () {
   const name = document.getElementById("nickname").value;
-
   if (!name) return;
 
   localStorage.setItem("username", name);
@@ -93,8 +90,6 @@ window.createUser = function () {
   showSection("mainPage");
   showWelcome();
 };
-
-//message 
 
 function showWelcome() {
   const name = localStorage.getItem("username");
@@ -105,7 +100,7 @@ function showWelcome() {
   }
 }
 
-// buttons
+//back buttons 
 
 document.querySelectorAll(".backToMain").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -114,74 +109,141 @@ document.querySelectorAll(".backToMain").forEach(btn => {
   });
 });
 
-
+//authenetication 
 
 onAuthStateChanged(window.auth, (user) => {
   if (user) {
-    const completed =
-      localStorage.getItem("newUserCompleted") === "true";
-
-    if (completed) {
-      showSection("mainPage");
-    } else {
-      showSection("newUser");
-    }
-
+    const completed = localStorage.getItem("newUserCompleted") === "true";
+    showSection(completed ? "mainPage" : "newUser");
     showWelcome();
-
   } else {
     showSection("loginSection");
   }
 });
 
-// avatar 
-
-let selectedAnimal = null;
+//avatar 
 
 document.addEventListener("DOMContentLoaded", () => {
-
   document.querySelectorAll(".animal").forEach(el => {
     el.addEventListener("click", () => {
-
-      document.querySelectorAll(".animal")
-        .forEach(a => a.classList.remove("selected"));
-
+      document.querySelectorAll(".animal").forEach(a => a.classList.remove("selected"));
       el.classList.add("selected");
 
-      selectedAnimal = el.dataset.animal;
-      localStorage.setItem("animal", selectedAnimal);
-
+      localStorage.setItem("animal", el.dataset.animal);
       renderAnimal();
     });
   });
 
-  renderAnimal(); 
+  renderAnimal();
 });
 
 function renderAnimal() {
   const animal = localStorage.getItem("animal");
   const display = document.getElementById("bearDisplay");
 
-  if (!display) return;
-
   const emojiMap = {
-    bear: "🐻",
-    cat: "🐱",
-    dog: "🐶",
-    rabbit: "🐰",
-    fox: "🦊",
-    panda: "🐼",
-    frog: "🐸",
-    koala: "🐨",
-    lion: "🦁",
-    pig: "🐷"
+    bear: "🐻", cat: "🐱", dog: "🐶", rabbit: "🐰", fox: "🦊",
+    panda: "🐼", frog: "🐸", koala: "🐨", lion: "🦁", pig: "🐷"
   };
 
-  display.textContent = animal ? emojiMap[animal] || "🐻" : "";
+  if (display) {
+    display.textContent = animal ? emojiMap[animal] || "🐻" : "";
+  }
 }
 
+//journal 
 
+document.getElementById("entryForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const title = document.getElementById("entry-title").value;
+  const entry = document.getElementById("entry").value;
+
+  if (!journalData[selectedDate]) {
+    journalData[selectedDate] = [];
+  }
+
+  journalData[selectedDate].push({
+    title,
+    text: entry,
+    time: new Date().toLocaleTimeString()
+  });
+
+  localStorage.setItem("journalData", JSON.stringify(journalData));
+
+  renderEntries(selectedDate);
+
+  document.getElementById("entry-title").value = "";
+  document.getElementById("entry").value = "";
+});
+
+function renderEntries(date) {
+  const container = document.getElementById("entryResults");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const entries = journalData[date] || [];
+
+  entries.forEach(e => {
+    const div = document.createElement("div");
+    div.classList.add("journal-entry");
+
+    div.innerHTML = `
+      <h3>${e.title}</h3>
+      <p>${e.text}</p>
+      <small>${e.time}</small>
+    `;
+
+    container.prepend(div);
+  });
+}
+
+//calander 
+
+window.openCalendar = function () {
+  document.getElementById("calendarModal").classList.remove("hidden");
+  generateCalendar();
+};
+
+window.closeCalendar = function () {
+  document.getElementById("calendarModal").classList.add("hidden");
+};
+
+function generateCalendar() {
+  const grid = document.getElementById("calendarGrid");
+  grid.innerHTML = "";
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    grid.appendChild(document.createElement("div"));
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const cell = document.createElement("div");
+    cell.classList.add("day");
+    cell.textContent = day;
+
+    cell.addEventListener("click", () => {
+      selectedDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+      closeCalendar();
+      renderEntries(selectedDate);
+    });
+
+    grid.appendChild(cell);
+  }
+}
+
+// load default
 window.onload = function () {
   showWelcome();
   renderAnimal();
+  renderEntries(selectedDate);
 };
