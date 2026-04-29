@@ -7,6 +7,7 @@
   <meta name="author" content="Ayat Alkhatib">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="asset/css/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -73,19 +74,17 @@
 
   <section class="dashboard">
 
-    <!-- LEFT -->
     <div class="leftPanel">
       <div id="bearDisplay" class="animalDisplay"></div>
     </div>
 
-    <!-- RIGHT -->
     <div class="rightPanel">
 
       <ul>
         <li><a href="#" onclick="showSection('wellnessTracker'); return false;">Wellness Tracker</a></li>
         <li><a href="#" onclick="showSection('journal'); return false;">Journal</a></li>
         <li><a href="#" onclick="showSection('report'); return false;">Report</a></li>
-        <li><a href="#" onclick="showSection('calander'); return false;">Calendar</a></li>
+        <li><a href="#" onclick="showSection('calendar'); return false;">Calendar</a></li>      
       </ul>
 
       <div class="topBar">
@@ -97,7 +96,8 @@
   </section>
 </section>
 
-<!--wellness page--><section id="wellnessTracker" class="web-tool">
+<!--wellness page-->
+<section id="wellnessTracker" class="web-tool">
 
   <div class="wellness-wrapper">
 
@@ -105,16 +105,16 @@
       <h3>Wellness Tracker</h3>
 
       <label>Water Intake</label>
-      <input type="text" id="waterintake" placeholder="Enter number">
+      <input type="text" id="waterintake" placeholder="Liters">
 
       <label>Exercise</label>
-      <input type="text" id="exercise" placeholder="Enter number">
+      <input type="text" id="exercise" placeholder="Minutes">
 
       <label>Sleep</label>
-      <input type="text" id="sleep" placeholder="Enter number">
+      <input type="text" id="sleep" placeholder="Hours">
 
       <label>Calories Intake</label>
-      <input type="text" id="cal-intake" placeholder="Enter number">
+      <input type="text" id="cal-intake" placeholder="kCal">
     </div>
 
     <div class="mind">
@@ -131,7 +131,7 @@
       </div>
 
       <label>Hobby</label>
-      <input type="text" id="hobby">
+      <input type="text" id="hobby" placeholder="N/A for no hobby">
 
       <h5>Mood Tracker</h5>
 
@@ -144,6 +144,7 @@
     </div>
 
   </div>
+  <div id="statusMessage"></div>
 
   <div class="wellness-buttons">
     <button class="backToMain">Back</button>
@@ -155,13 +156,12 @@
 <!-- jorunal -->
 <section id="journal" class="web-tool">
 
-  <header class="journal-header">
+  <section class="section journal-section">
+     <header class="journal-header">
     <h1 class="title">My Personal Journal</h1>
 
     <span class="date-icon" onclick="openCalendar()">📅</span>
   </header>
-
-  <section class="section journal-section">
     <div class="container">
       <div class="container-row container-row-journal">
         <div class="container-item container-item-journal">
@@ -192,15 +192,13 @@
     </div>
   </section>
 
-  <!-- Journal Results -->
   <section class="section sectionEntryResults" id="entryResultsSection">
     <div class="container">
       <div class="container-row entryResultRow" id="entryResults"></div>
     </div>
   </section>
 
-  <!-- Back Button -->
-  <div class="wellness-buttons">
+  <div class="journal-buttons">
     <button class="backToMain">Back</button>
   </div>
 
@@ -222,14 +220,50 @@
 </div>
 
 <!-- report -->
-<section id="report" class="web-tool"></section>
+<section id="report" class="web-tool">
+  <div class="report-container">
+    <h2>Progress Report</h2>
+    <div class="report-tabs">
+      <button onclick="renderReport('weekly')">7 Days</button>
+      <button onclick="renderReport('monthly')">30 Days</button>
+    </div>
+    
+    <canvas id="wellnessChart"></canvas>
+    
+    <h3>Mood Distribution</h3>
+    <canvas id="moodChart"></canvas>
+    
+    <div id="statsSummary"></div>
+    <div id="hobbyList" class="detail-box"></div>
+    
+    <button class="backToMain">Back</button>
+  </div>
+</section>
 
 <!-- calander -->
-<section id="calander" class="web-tool"></section>
+ <section id="calendar" class="web-tool" style="display:none;">
 
+    <div class="calendar-container">
+      <h2>My Activity Calendar</h2>
+      <div class="calendar-header">
+      <button onclick="changeMonth(-1)">⬅</button>
+      <h3 id="monthYear"></h3>
+      <button onclick="changeMonth(1)">➡</button>
+    </div>
+
+
+      <div id="pageCalendarGrid" class="calendar-grid"></div>
+    </div>
+
+    <div id="dayDetail"></div>
+
+    <div class="wellness-buttons" style="margin-top: 20px;">
+      <button class="backToMain">Back to Dashboard</button>
+    </div>
+  </section>
 </main>
 
-<!-- ================= FIREBASE ================= -->
+<!--  FIREBASE  -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
   import { getAuth } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";

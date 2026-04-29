@@ -18,7 +18,7 @@ body {
   color: #2b2b2b;
 }
 
-/*  GLOBAL TOOL LAYOUT  */
+/*  global tools */
 
 .web-tool {
   min-height: 100vh;
@@ -45,6 +45,9 @@ button {
   border-radius: 12px;
   cursor: pointer;
   transition: 0.2s ease;
+  margin-top: 25px;
+  width: 100%;
+   
 }
 
 button:hover {
@@ -52,21 +55,17 @@ button:hover {
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-/*  LOGIN  */
+/*  login  */
 
 .login-card {
   background: white;
   width: 700px;
   max-width: 95%;
   height: 500px;
-
   padding: 45px;
   border-radius: 20px;
-
   box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-
   text-align: center;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,10 +75,8 @@ button:hover {
 .login-card input {
   width: 100%;
   padding: 14px;
-
   border-radius: 12px;
   border: 1px solid #ddd;
-
   outline: none;
 }
 
@@ -88,7 +85,7 @@ button:hover {
   box-shadow: 0 0 0 3px rgba(90,103,216,0.2);
 }
 
-/*  NEW USER  */
+/*  new user  */
 
 #newUser {
   flex-direction: column;
@@ -97,15 +94,10 @@ button:hover {
 
 #userNamegen {
   width: 400px;
-
   padding: 35px;
-
   background: rgba(255,255,255,0.95);
-
   border-radius: 25px;
-
   box-shadow: 0 30px 70px rgba(0,0,0,0.18);
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,21 +114,14 @@ button:hover {
 .animal {
   width: 65px;
   height: 65px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 32px;
-
   background: white;
-
   border-radius: 15px;
-
   cursor: pointer;
-
   box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-
   transition: 0.25s ease;
 }
 
@@ -148,23 +133,18 @@ button:hover {
   border: 3px solid #5a67d8;
 }
 
-/*  DASHBOARD  */
+/*  dashboard  */
 
 .message {
   position: absolute;
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
-
   font-size: 26px;
   font-weight: 700;
-
   background: rgba(255,255,255,0.9);
-
   padding: 12px 25px;
-
   border-radius: 999px;
-
   box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
@@ -172,10 +152,8 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 90%;
   max-width: 1200px;
-
   gap: 50px;
 }
 
@@ -187,20 +165,14 @@ button:hover {
 
 .animalDisplay {
   font-size: 140px;
-
   width: 230px;
   height: 230px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background: white;
-
   border-radius: 50%;
-
   box-shadow: 0 30px 70px rgba(0,0,0,0.2);
-
   animation: float 3s ease-in-out infinite;
 }
 
@@ -212,15 +184,10 @@ button:hover {
 
 .rightPanel {
   flex: 1.3;
-
   background: rgba(255,255,255,0.95);
-
   padding: 40px;
-
   border-radius: 25px;
-
   box-shadow: 0 30px 70px rgba(0,0,0,0.15);
-
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -228,18 +195,12 @@ button:hover {
 
 .rightPanel a {
   display: block;
-
   padding: 16px;
-
   font-size: 18px;
   font-weight: 600;
-
   border-radius: 14px;
-
   text-decoration: none;
-
   color: #333;
-
   transition: 0.2s;
 }
 
@@ -248,14 +209,13 @@ button:hover {
   transform: translateX(6px);
 }
 
-/*  WELLNESS FIXED  */
+/* wellness page  */
 
 #wellnessTracker {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: 25px;
   min-height: 100vh;
 }
@@ -268,28 +228,19 @@ button:hover {
 .wellness,
 .mind {
   width: 380px;
-
   background: white;
-
   padding: 25px;
-
   border-radius: 22px;
-
   box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-
   display: flex;
   flex-direction: column;
-
   gap: 12px;
 }
 
 input {
   padding: 12px;
-
   border-radius: 10px;
-
   border: 1px solid #ddd;
-
   outline: none;
 }
 
@@ -300,15 +251,10 @@ input:focus {
 
 .mood-list li {
   padding: 12px;
-
   margin-bottom: 8px;
-
   background: #f0f4ff;
-
   border-radius: 12px;
-
   cursor: pointer;
-
   transition: 0.2s;
 }
 
@@ -326,9 +272,10 @@ input:focus {
   display: flex;
   justify-content: center;
   gap: 15px;
+  
 }
 
-/*  JOURNAL  */
+/*  journal  */
 
 #journal {
   flex-direction: column;
@@ -336,31 +283,27 @@ input:focus {
   gap: 20px;
 }
 
+
+
 .journal-section,
 .sectionEntryResults {
   width: 100%;
   max-width: 700px;
-
   background: white;
-
   padding: 30px;
-
   border-radius: 22px;
-
   box-shadow: 0 20px 50px rgba(0,0,0,0.12);
 }
 
 .entry-text-box {
   width: 100%;
   height: 150px;
-
   padding: 12px;
-
   border-radius: 10px;
-
   border: 1px solid #ddd;
-
   resize: none;
+  margin-top: 25px;
+  margin-bottom: 25px;
   
 }
 
@@ -376,7 +319,9 @@ input:focus {
   align-items: center;
   gap: 15px;
   position: relative;
+  margin-bottom: 25px;
 }
+
 
 .date-wrapper {
   position: relative;
@@ -388,16 +333,12 @@ input:focus {
   top: 35px;
   left: 50%;
   transform: translateX(-50%) scale(0);
-
   background: white;
   padding: 10px 15px;
   border-radius: 12px;
-
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-
   font-size: 14px;
   white-space: nowrap;
-
   transition: 0.2s ease;
   z-index: 10;
 }
@@ -431,14 +372,16 @@ input:focus {
   display: none;
 }
 
+/* calender */
+
 .calendar-box {
   width: 320px;
   background: white;
-
   border-radius: 20px;
   padding: 20px;
-
   box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  margin-top: 20px;
+
 }
 
 .calendar-header {
@@ -457,14 +400,11 @@ input:focus {
 .day {
   width: 35px;
   height: 35px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 8px;
   cursor: pointer;
-
   background: #f0f4ff;
   transition: 0.2s;
 }
@@ -482,4 +422,179 @@ input:focus {
 
 .date-icon:hover {
   transform: scale(1.2);
+}
+
+#calendar.web-tool {
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 50px;
+}
+
+.calendar-container {
+  background: white;
+  padding: 20px;
+  border-radius: 25px;
+  width: 350px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-top: 25px;
+}
+
+#pageCalendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); 
+  gap: 5px;
+  width: 100%;
+}
+
+#pageCalendarGrid div {
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.calendar-header-day {
+  font-weight: bold;
+  color: #5a67d8;
+}
+
+#pageCalendarGrid .day {
+  background: #f0f4ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#pageCalendarGrid .day:hover {
+  background: #5a67d8;
+  color: white;
+  transform: scale(1.1);
+}
+
+.has-data {
+  background: #5a67d8 !important;
+  color: white !important;
+}
+
+#dayDetail {
+  width: 350px;
+  margin-top: 20px;
+}
+
+.detail-box {
+  background: #DECFE8;
+  padding: 15px;
+  border-radius: 15px;
+  border-left: 5px solid #5a67d8;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+#calendar h2{
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* report */
+
+#report h2, #calendar h2, #journal h1{
+  font-family:'Times New Roman', Times, serif;
+  color:#5F3875;
+}
+
+.report-container {
+  background: white;
+  padding: 30px;
+  border-radius: 30px;
+  width: 95%;
+  max-width: 500px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  text-align: center;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.report-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.report-tabs button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  background: #DECFE8;
+  color: #000000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+
+}
+
+.report-tabs button:hover {
+  background: #5F3875;
+  color: white;
+}
+
+#wellnessChart, #moodChart {
+  width: 100% !important;
+  height: auto !important;
+  margin-bottom: 20px;
+}
+
+#moodChart {
+  max-height: 200px; 
+}
+
+.well-summary {
+  background: #DECFE8;
+  padding: 15px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  color: #2d3748;
+  line-height: 1.6;
+  margin: 15px 0;
+  border: 1px solid #e2e8f0;
+}
+
+#hobbyList {
+  background: #5F3875;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: white;
+  border-left: 5px solid #A072BB;
+  text-align: left;
+  margin-top: 10px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin: 20px 0 10px;
+  color: #2d3748;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #edf2f7;
+  margin: 20px 0;
+}
+
+#report {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.report-container .backToMain {
+  margin-top: 25px;
+  width: 100%;
+  background: #5a67d8;
+  color: white;
 }
