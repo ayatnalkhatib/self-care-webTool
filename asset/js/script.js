@@ -73,9 +73,7 @@ setTimeout(() => {
   }
 }, 500);
 
-/* =========================
-   PROFILE & ANIMALS
-========================= */
+// avatars
 window.createUser = function() {
   const name = document.getElementById("nickname").value;
   if(!name) return alert("Please enter a name");
@@ -109,6 +107,7 @@ document.addEventListener("click", function(e) {
 
   if (e.target && e.target.classList.contains("savedata")) {
     const moodEl = document.querySelector(".mood.selected");
+    const currentMood = moodEl ? (moodEl.dataset.mood || moodEl.id || "okay") : "okay";
     const readingVal = document.querySelector('input[name="reading"]:checked')?.value || "no";
 
     wellnessData[selectedDate] = {
@@ -118,11 +117,11 @@ document.addEventListener("click", function(e) {
       calories: document.getElementById("cal-intake")?.value || "0",
       hobby: document.getElementById("hobby")?.value || "",
       reading: readingVal,
-      mood: mood
+      mood: currentMood
     };
     
     localStorage.setItem("wellnessData", JSON.stringify(wellnessData));
-    displayStatusMessage(mood);
+    displayStatusMessage(currentMood);
   }
 });
 
